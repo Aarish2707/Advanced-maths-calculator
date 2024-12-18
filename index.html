@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Scientific Calculator</title>
+  <link rel="stylesheet" href="calc.css">
+</head>
+<body>
+  <div class="calculator">
+    <input type="text" id="screen" class="screen" readonly>
+    <div class="row">
+      <button class="btn btn-light" onclick="press('7')">7</button>
+      <button class="btn btn-light" onclick="press('8')">8</button>
+      <button class="btn btn-light" onclick="press('9')">9</button>
+      <button class="btn btn-operator" onclick="press('/')">&divide;</button>
+    </div>
+    <div class="row">
+      <button class="btn btn-light" onclick="press('4')">4</button>
+      <button class="btn btn-light" onclick="press('5')">5</button>
+      <button class="btn btn-light" onclick="press('6')">6</button>
+      <button class="btn btn-operator" onclick="press('*')">&times;</button>
+    </div>
+    <div class="row">
+      <button class="btn btn-light" onclick="press('1')">1</button>
+      <button class="btn btn-light" onclick="press('2')">2</button>
+      <button class="btn btn-light" onclick="press('3')">3</button>
+      <button class="btn btn-operator" onclick="press('-')">&minus;</button>
+    </div>
+    <div class="row">
+      <button class="btn btn-light" onclick="press('.')">.</button>
+      <button class="btn btn-light" onclick="press('0')">0</button>
+      <button class="btn btn-light" onclick="calculate()">=</button>
+      <button class="btn btn-operator" onclick="press('+')">+</button>
+    </div>
+    <div class="row">
+      <button class="btn btn-special" onclick="clearScreen()">C</button>
+      <button class="btn btn-special" onclick="press('Math.sqrt(')">√</button>
+      <button class="btn btn-special" onclick="press('Math.pow(')">x<sup>y</sup></button>
+      <button class="btn btn-special" onclick="press('Math.log10(')">log</button>
+    </div>
+    <button class="btn btn-special" onclick="toggleExtra()">More</button>
+    <div id="extra-section" class="extra-section">
+      <div class="row">
+        <button class="btn btn-special" onclick="press('(')">(</button>
+        <button class="btn btn-special" onclick="press(')')">)</button>
+        <button class="btn btn-special" onclick="press('[')">[</button>
+        <button class="btn btn-special" onclick="press(']')">]</button>
+      </div>
+      <div class="row">
+        <button class="btn btn-special" onclick="press('^')">^</button>
+        <button class="btn btn-special" onclick="press('Math.cbrt(')">∛</button>
+        <button class="btn btn-special" onclick="press('Math.exp(')">exp</button>
+        <button class="btn btn-special" onclick="press('Math.abs(')">|x|</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+        let screen = document.getElementById('screen');
+    let extraSection = document.getElementById('extra-section');
+
+    function press(value) {
+      screen.value += value;
+    }
+
+    function calculate() {
+      try {
+        screen.value = eval(screen.value);
+      } catch (e) {
+        screen.value = "Error";
+      }
+    }
+
+    function clearScreen() {
+      screen.value = "";
+    }
+
+    function toggleExtra() {
+      if (extraSection.style.display === "none" || extraSection.style.display === "") {
+        extraSection.style.display = "block";
+      } else {
+        extraSection.style.display = "none";
+      }
+    }
+  </script>
+</body>
+</html>
